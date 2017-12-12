@@ -76,11 +76,12 @@ class StringOfCars;
 /**************************************************
 ** Node class
 **************************************************/
+template <class T>
 class Node
 {
 private:
 	Node* next;
-	Car* data;
+	T* data;
 	Node ()
 	{
 		next = 0;
@@ -97,8 +98,8 @@ public:
 class StringOfCars
 {
 private:
-	Node* head;
-	Node* tail;
+	Node<Car>* head;
+	Node<Car>* tail;
 public:
 	StringOfCars () //default constructor
 	{
@@ -107,7 +108,7 @@ public:
 	}
 	StringOfCars (const StringOfCars* &StringOfCarsObj)  //copy constructor
 	{
-		Node * currentNodePtr;
+		Node<Car> *currentNodePtr;
 		head = 0;
 		tail = 0;
 		currentNodePtr = StringOfCarsObj->head;
@@ -118,8 +119,8 @@ public:
 	}
 	~StringOfCars ()
 	{
-		Node * currentNodePtr;
-		Node * previousNodePtr;
+		Node<Car> *currentNodePtr;
+		Node<Car> *previousNodePtr;
 		currentNodePtr = head;
 		while (currentNodePtr != 0) {
 			delete currentNodePtr->data;
@@ -147,7 +148,7 @@ int main ()
 	StringOfCars cars;
 	input (cars);
 	cars.output ();
-	system ("pause");
+	//system ("pause");
 	return 0;
 }
 
@@ -277,7 +278,7 @@ bool operator==(const Car CarObj1, const Car CarObj2)
 **************************************************/
 void StringOfCars::output ()
 {
-	Node* currentNodePtr;
+	Node<Car> *currentNodePtr;
 	int i = 1;
 	if (head == 0)
 	{
@@ -301,9 +302,9 @@ void StringOfCars::output ()
 **************************************************/
 void StringOfCars::push (const Car &CarObj)
 {
-	Car* currentCarPtr;
-	Node* currentNodePtr;
-	currentNodePtr = new Node;
+	Car *currentCarPtr;
+	Node<Car> *currentNodePtr;
+	currentNodePtr = new Node<Car>;
 	currentCarPtr = new Car (CarObj);
 	currentNodePtr->data = currentCarPtr;
 	if (head == 0)
@@ -323,9 +324,9 @@ void StringOfCars::push (const Car &CarObj)
 **************************************************/
 void StringOfCars::push (const FreightCar &CarObj)
 {
-	Car* currentCarPtr;
-	Node* currentNodePtr;
-	currentNodePtr = new Node;
+	Car *currentCarPtr;
+	Node<Car> *currentNodePtr;
+	currentNodePtr = new Node<Car>;
 	currentCarPtr = new FreightCar (CarObj);
 	currentNodePtr->data = currentCarPtr;
 	if (head == 0)
@@ -345,9 +346,9 @@ void StringOfCars::push (const FreightCar &CarObj)
 **************************************************/
 void StringOfCars::push (const PassengerCar &CarObj)
 {
-	Car* currentCarPtr;
-	Node* currentNodePtr;
-	currentNodePtr = new Node;
+	Car *currentCarPtr;
+	Node<Car> *currentNodePtr;
+	currentNodePtr = new Node<Car>;
 	currentCarPtr = new PassengerCar (CarObj);
 	currentNodePtr->data = currentCarPtr;
 	if (head == 0)
